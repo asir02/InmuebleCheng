@@ -44,6 +44,24 @@ public class InmuebleResController {
 		return l;
 	}
 	
+	/*function list*/
+	@RequestMapping(method=RequestMethod.GET, value="/buscarPrecioMenor/{precio}")
+	public @ResponseBody List<Inmueble> buscarPrecioMenor(@PathVariable Double precio){
+		Map<String, Object> params=new HashMap();
+		params.put("precio", precio);
+		List<Inmueble> l=dao.find("inmueble.buscarPrecioMenor", params);
+		return l;
+	}
+	
+	/*function list*/
+	@RequestMapping(method=RequestMethod.GET, value="/buscarPrecioMayor/{precio}")
+	public @ResponseBody List<Inmueble> buscarPrecioMayor(@PathVariable Double precio){
+		Map<String, Object> params=new HashMap();
+		params.put("precio", precio);
+		List<Inmueble> l=dao.find("inmueble.buscarPrecioMayor", params);
+		return l;
+	}
+	
 	/*function delete*/
 	@RequestMapping(method=RequestMethod.DELETE)
 	public @ResponseBody String borrar(@RequestBody Inmueble inmueble) {

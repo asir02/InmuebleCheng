@@ -6,12 +6,13 @@
 </head>
 <body>
 <h1>
-	Hello world! Esto es Inmueble Cheng. 
+	Hello world! Esto es Inmueble Cheng.  
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
 <p><a href="listarPropietarios.html">Listar propietarios</a></p>
 <p><a href="listarInmuebles.html">Listar inmuebles</a></p>
 <p><a href="listarInquilinos.html">Listar inquilinos</a></p>
+<p>email:thomaschengk@gmail.com</p>
 </body>
 </html>

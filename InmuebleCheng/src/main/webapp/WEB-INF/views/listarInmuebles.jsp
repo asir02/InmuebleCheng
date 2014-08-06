@@ -20,8 +20,14 @@ Listado de Inmuebles
 </h2>
 
 <div>
-	<input type="text" id="txtBuscar" placeholder="Buscar nombre de la via del inmueble" size="30" />
-	<input type="button" id="btnBuscar" value="buscar" onclick="buscar()" />
+	<input type="text" id="txtBuscar" placeholder="Buscar por nombre de la via" size="30" />
+	<input type="button" id="btnBuscar" value="buscar por nombre de la via" onclick="buscar()" />
+</div>
+
+<div>
+	<input type="text" id="precioBuscar" placeholder="Buscar por precio" size="28" />€
+	<input type="button" id="btnBuscar" value="buscar por precio menor o igual" onclick="buscarPrecioMenor()" />
+	<input type="button" id="btnBuscar" value="buscar por precio mayor o igual" onclick="buscarPrecioMayor()" />
 </div>
 
 <div>
@@ -102,6 +108,58 @@ function buscar(){
 	if(tx=="")
 		tx="";
 	var url="inmueble/buscar/"+tx;	
+
+	$.get(url,function(res){
+
+		var table=$("#tblDatas");
+
+		$("#tblDatas tr").each(function(){
+				$(this).remove();
+		});
+
+		for(var i=0;i<res.length;i++){
+			var h="<tr>";
+			h+="<td>"+res[i].direccion+"</td>";
+			h+="<td><a href='detalleInmueble.html?id="+res[i].idInmueble+"'><input type='button' value='Detalle' /></td>";
+			h+="<td><a href='modificarInmueble.html/"+res[i].idInmueble+"'><input type='button' value='Modificar' /></a></td>";
+			h+="<td><a href='#' onclick='borrar("+res[i].idInmueble+")'><input type='button' value='Borrar' /></a></td>";
+			h+="</tr>";	
+			table.append(h);
+		}
+
+	});
+	
+}
+
+function buscarPrecioMenor(){
+	var tx=$("#precioBuscar").val();
+	var url="inmueble/buscarPrecioMenor/"+tx;	
+
+	$.get(url,function(res){
+
+		var table=$("#tblDatas");
+
+		$("#tblDatas tr").each(function(){
+				$(this).remove();
+		});
+
+		for(var i=0;i<res.length;i++){
+			var h="<tr>";
+			h+="<td>"+res[i].direccion+"</td>";
+			h+="<td><a href='detalleInmueble.html?id="+res[i].idInmueble+"'><input type='button' value='Detalle' /></td>";
+			h+="<td><a href='modificarInmueble.html/"+res[i].idInmueble+"'><input type='button' value='Modificar' /></a></td>";
+			h+="<td><a href='#' onclick='borrar("+res[i].idInmueble+")'><input type='button' value='Borrar' /></a></td>";
+			h+="</tr>";	
+			table.append(h);
+		}
+
+	});
+	
+}
+
+function buscarPrecioMayor(){
+	var tx=$("#precioBuscar").val();
+	var url="inmueble/buscarPrecioMayor/"+tx;	
 
 	$.get(url,function(res){
 
