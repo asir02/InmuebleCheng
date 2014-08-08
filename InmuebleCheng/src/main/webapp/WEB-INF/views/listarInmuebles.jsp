@@ -1,8 +1,6 @@
 <%@page import="org.apache.taglibs.standard.tag.el.core.ForEachTag"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,28 +33,13 @@ Listado de Inmuebles
 		<input type="button" id="btnBuscar" value="Alta Inmueble" />
 	</a>
 </div>
+
 <br />
-<table>
-	<tr>
-		<c:set var="sum" value="${0}" />
-		<c:forEach items="${inmuebles}" var="inmueble" varStatus="loopCount">
-			<c:set var="sum" value="${sum+inmueble.precio}" />
-    	</c:forEach>		
-   
-    	<td>Precio medio:</td><td><fmt:formatNumber type="number" maxFractionDigits="2" value="${sum/fn:length(inmuebles)}" />€</td>
-    </tr>
-    <tr>    
-    	<c:set var="max" value="${0}" />
-    	<c:forEach items="${inmuebles}" var="inmueble" varStatus="loopCount">
-    		<c:set var="precio" value="${inmueble.precio}" />
-    		<c:if test="${max<precio}">
-    			<c:set var="max" value="${inmueble.precio}" />
-    		</c:if>
-    	</c:forEach>
-    	
-    	<td>Precio maximo:</td><td><fmt:formatNumber type="number" maxFractionDigits="2" value="${max}" />€</td>    	
-    </tr>
-</table>
+
+<div>
+	<a href="estadisticasInmuebles.html">Estadisticas de los inmuebles</a>
+</div>
+
 <br />
 
 <table id="tblDatas">
